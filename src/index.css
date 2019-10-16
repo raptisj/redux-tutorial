@@ -1,13 +1,56 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+	"Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+	sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+	monospace;
+}
+
+ul {
+	list-style: none;
+	max-width: 400px;
+	margin: 0 auto;
+	background: #ddd;
+	padding: 20px;
+	border-radius: 10px;
+}
+
+ul li {
+	padding: 5px;
+	margin-bottom: 10px;
+	background: #fff;
+	display: flex;
+	justify-content: space-between;
+}
+
+ul li button {
+	border: 2px solid #ddd;
+	background: #ddd;
+	cursor: pointer;
+	margin-left: 4px;
+}
+
+ul > form {
+	margin-top: 50px;
+}
+
+ul > form input[type="text"] {
+	height: 24px;
+	padding: 4px;
+	border: none;
+	font-size: .9rem;
+}
+
+ul > form input[type="submit"] {
+	padding: 8px;
+	border: none;
+	background: #333;
+	color: #ddd;
+	font-size: .8rem;
 }
