@@ -1,43 +1,21 @@
-import { 
-	ADD_SONG,
-	DELETE_SONG, 
-	EDIT_SONG, 
-	UPDATE_SONG,
-	CANCEL_EDIT 
-} from './types'
+// import { createAction } from "@reduxjs/toolkit";
 
-export const addSong = (song) => {
-	return {
-		type: ADD_SONG,
-		payload: song
-	}
-}
+// export const addSong = createAction("ADD_SONG");
 
-export const removeSong = (index) => {
-	return {
-		type: DELETE_SONG,
-		payload: index
-	}
-}
+// export const removeSong = createAction("DELETE_SONG");
 
-export const editSong = (index) => {
-	return {
-		type: EDIT_SONG,
-		payload: index
-	}
-}
+// export const editSong = createAction("EDIT_SONG");
 
-export const updateSong = (title, index) => {
-	return {
-		type: UPDATE_SONG,
-		title,
-		index
-	}
-}
+// export const updateSong = createAction("UPDATE_SONG", function prepare(
+// 	title,
+// 	index
+// ) {
+// 	return {
+// 		payload: {
+// 			title,
+// 			index
+// 		}
+// 	};
+// });
 
-export const cancelEdit = (index) => {
-	return {
-		type: CANCEL_EDIT,
-		index
-	}
-}
+// export const cancelEdit = createAction("CANCEL_EDIT");

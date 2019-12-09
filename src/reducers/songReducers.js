@@ -1,11 +1,27 @@
-import {
-	ADD_SONG,
-	DELETE_SONG,
-	EDIT_SONG,
-	UPDATE_SONG,
-	CANCEL_EDIT
-} from "../actions/types";
+import { createReducer, createAction } from "@reduxjs/toolkit";
 
+// Actions
+export const addSong = createAction("ADD_SONG");
+
+export const removeSong = createAction("DELETE_SONG");
+
+export const editSong = createAction("EDIT_SONG");
+
+export const updateSong = createAction("UPDATE_SONG", function prepare(
+	title,
+	index
+) {
+	return {
+		payload: {
+			title,
+			index
+		}
+	};
+});
+
+export const cancelEdit = createAction("CANCEL_EDIT");
+
+// State
 const initialState = {
 	songs: [
 		{ title: "I love redux", editing: false },
@@ -14,39 +30,40 @@ const initialState = {
 	]
 };
 
-export default function(state = initialState, action) {
-	switch (action.type) {
-		case ADD_SONG:
-			return {
-				songs: [action.payload, ...state.songs]
-			};
-		case DELETE_SONG:
-			return {
-				songs: state.songs.filter((s, i) => i !== action.payload)
-			};
-		case EDIT_SONG:
-			return {
-				songs: state.songs.map((song, i) =>
-					i === action.payload
-						? { ...song, editing: true }
-						: { ...song, editing: false }
-				)
-			};
-		case UPDATE_SONG:
-			return {
-				songs: state.songs.map((song, i) =>
-					i === action.index
-						? { ...song, title: action.title, editing: false }
-						: song
-				)
-			};
-		case CANCEL_EDIT:
-			return {
-				songs: state.songs.map((song, i) =>
-					i === action.index ? { ...song, editing: false } : song
-				)
-			};
-		default:
-			return state;
+// Reducer
+export default createReducer(initialState, {
+	[addSong]: (state, action) => {
+		return {
+			songs: [action.payload, ...state.songs]
+		};
+	},
+	[removeSong]: (state, action) => {
+		return {
+			songs: state.songs.filter((s, i) => i !== action.payload)
+		};
+	},
+	[editSong]: (state, action) => {
+		return {
+			songs: state.songs.map((song, i) =>
+				i === action.payload
+					? { ...song, editing: true }
+					: { ...song, editing: false }
+			)
+		};
+	},
+	[updateSong]: (state, action) => {
+		const { index, title } = action.payload;
+		return {
+			songs: state.songs.map((song, i) =>
+				i === index ? { ...song, title, editing: false } : song
+			)
+		};
+	},
+	[cancelEdit]: (state, action) => {
+		return {
+			songs: state.songs.map((song, i) =>
+				i === action.payload ? { ...song, editing: false } : song
+			)
+		};
 	}
-}
+});
