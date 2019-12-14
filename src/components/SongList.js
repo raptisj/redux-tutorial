@@ -1,13 +1,13 @@
 import React, { Fragment, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import { addSong, removeSong, editSong, updateSong, cancelEdit } from '../reducers/songReducers';
-import { addSong, removeSong, editSong, updateSong, cancelEdit } from '../features/songSlice';
+import { addSong, removeSong, editSong, updateSong, cancelEdit } from '../reducers/songReducers';
+// import { addSong, removeSong, editSong, updateSong, cancelEdit } from '../features/songSlice';
 
 const SongList = () => {
 	const dispatch = useDispatch();
 	const [newSong, setNewSong] = useState();
 	const [currentVal, setCurrentVal] = useState();
-	const { songs } = useSelector(state => state.songs);
+	const { songs } = useSelector(state => state);
 
 	const addNewSong = e => {
 		e.preventDefault();
