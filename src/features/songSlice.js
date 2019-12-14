@@ -1,12 +1,12 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const songSlice = createSlice({
-	name: "songs",
+	name: 'songs',
 	initialState: {
 		songs: [
-			{ title: "I love redux", editing: false },
-			{ title: "The redux song", editing: false },
-			{ title: "Run to the redux hill", editing: false }
+			{ title: 'I love redux', editing: false },
+			{ title: 'The redux song', editing: false },
+			{ title: 'Run to the redux hill', editing: false }
 		]
 	},
 	reducers: {
@@ -21,55 +21,44 @@ const songSlice = createSlice({
 			};
 		},
 		editSong: (state, action) => {
-			return {
-				songs: state.songs.map((song, i) =>
-					i === action.payload
-						? { ...song, editing: true }
-						: { ...song, editing: false }
-				)
-			};
+			const song = state.songs[action.payload];
+			song.editing = true;
 		},
-		// updateSong: {
-		// 	reducer(state, action) {
-		// 		const { title, index } = action.payload;
-		// 		const song = state.songs[index];
-		// 		// "mutates" the song, but it's safe if we do that with Immer
-		// 		song.title = title;
-		// 		console.log(song);
-		// 	},
-		// 	prepare(title, index) {
-		// 		return { payload: { title, index } };
-		// 	}
-		// },
 		updateSong: {
 			reducer(state, action) {
 				const { title, index } = action.payload;
-				return {
-					songs: state.songs.map((song, i) =>
-						i === index ? { ...song, title, editing: false } : song
-					)
-				};
+				const song = state.songs[index];
+				song.title = title;
+				song.editing = false;
 			},
 			prepare(title, index) {
 				return { payload: { title, index } };
 			}
 		},
 		cancelEdit: (state, action) => {
-			return {
-				songs: state.songs.map((song, i) =>
-					i === action.payload ? { ...song, editing: false } : song
-				)
-			};
+			const song = state.songs[action.payload];
+			song.editing = false;
 		}
 	}
 });
 
-export const {
-	addSong,
-	removeSong,
-	editSong,
-	updateSong,
-	cancelEdit
-} = songSlice.actions;
+export const { addSong, removeSong, editSong, updateSong, cancelEdit } = songSlice.actions;
 
 export default songSlice.reducer;
+
+// updateSong: {
+// 	reducer(state, action) {
+// 		const { title, index } = action.payload;
+// 		return {
+// 			songs: state.songs.map((song, i) => (i === index ? { ...song, title, editing: false } : song))
+// 		};
+// 	},
+// 	prepare(title, index) {
+// 		return { payload: { title, index } };
+// 	}
+// },
+// cancelEdit: (state, action) => {
+// 	return {
+// 		songs: state.songs.map((song, i) => (i === action.payload ? { ...song, editing: false } : song))
+// 	};
+// }

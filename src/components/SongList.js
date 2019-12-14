@@ -1,19 +1,7 @@
-import React, { Fragment, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-// import {
-// addSong
-// removeSong,
-// editSong,
-// updateSong,
-// cancelEdit
-// } from "../reducers/songReducers";
-import {
-	addSong,
-	removeSong,
-	editSong,
-	updateSong,
-	cancelEdit
-} from "../features/songSlice";
+import React, { Fragment, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+// import { addSong, removeSong, editSong, updateSong, cancelEdit } from '../reducers/songReducers';
+import { addSong, removeSong, editSong, updateSong, cancelEdit } from '../features/songSlice';
 
 const SongList = () => {
 	const dispatch = useDispatch();
@@ -31,7 +19,7 @@ const SongList = () => {
 
 		if (addedSong.title) {
 			dispatch(addSong(addedSong));
-			setNewSong("");
+			setNewSong('');
 		}
 	};
 
@@ -41,7 +29,7 @@ const SongList = () => {
 
 	const update = i => {
 		dispatch(updateSong(currentVal, i));
-		setCurrentVal("");
+		setCurrentVal('');
 	};
 
 	const edit = (i, title) => {
@@ -69,11 +57,7 @@ const SongList = () => {
 						) : (
 							<li>
 								<form>
-									<input
-										type="text"
-										value={currentVal}
-										onChange={e => setCurrentVal(e.target.value)}
-									/>
+									<input type="text" value={currentVal} onChange={e => setCurrentVal(e.target.value)} />
 								</form>
 								<span>
 									<button onClick={() => cancel(i)}>Cancel</button>
