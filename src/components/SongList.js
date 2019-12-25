@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addSong, removeSong, editSong, updateSong, cancelEdit } from '../reducers/songReducers';
-// import { addSong, removeSong, editSong, updateSong, cancelEdit } from '../features/songSlice';
+// import { addSong, removeSong, editSong, updateSong, cancelEdit } from '../reducers/songReducers';
+import { addSong, removeSong, editSong, updateSong, cancelEdit } from '../features/songSlice';
 
 const SongList = () => {
 	const dispatch = useDispatch();
